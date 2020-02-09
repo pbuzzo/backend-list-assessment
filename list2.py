@@ -12,7 +12,7 @@ Kenzie assignment: List2
 # http://code.google.com/edu/languages/google-python-class/
 
 # Instructions:
-# Complete each of these list manipulation exercises in the same way as the 
+# Complete each of these list manipulation exercises in the same way as the
 # previous List1 excercises.
 
 # D. Given a list of numbers, return a list where
@@ -23,8 +23,15 @@ Kenzie assignment: List2
 
 
 def remove_adjacent(nums):
-    # your code here
-    return
+    copy_list = nums[:]
+    new_list = []
+    for i in copy_list:
+        if (len(new_list) == 0) or (new_list[-1] != i):
+            new_list.append(i)
+            continue
+        else:
+            continue
+    return new_list
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -33,18 +40,30 @@ def remove_adjacent(nums):
 # Hint: Don't use `sort` or `sorted` -- they are not O(n) linear time, and the two lists
 # are already provided in ascending sorted order.
 def linear_merge(list1, list2):
-    # your code here
-    return
+    result = []
+    while list1 and list2:
+        result.append((list1 if list1[-1] > list2[-1] else list2).pop(-1))
+    if len(list1):
+        result += list1[-1::-1]
+    if len(list2):
+        result += list2[-1::-1]
+    return result[-1::-1]
 
+# resources: https://stackoverflow.com/questions/7237875/linear-merging-for-lists-in-python
+# https://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
+# https://www.geeksforgeeks.org/merge-two-sorted-linked-lists-such-that-merged-list-is-in-reverse-order/
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
+
+
 def test(got, expected):
     if got == expected:
         prefix = ' OK '
     else:
         prefix = '  X '
-    print('{} got: {}     expected: {}'.format(prefix, repr(got), repr(expected)))
+    print('{} got: {}     expected: {}'.format(
+        prefix, repr(got), repr(expected)))
 
 
 # Calls the above functions with interesting inputs.

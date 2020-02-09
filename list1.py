@@ -11,10 +11,10 @@ Kenzie List1 Assignment
 # http://code.google.com/edu/languages/google-python-class/
 
 # Instructions:
-# Complete each function below by writing the code for it. main() is already 
-# set up to test all the functions with a few different inputs, printing 'OK' when 
+# Complete each function below by writing the code for it. main() is already
+# set up to test all the functions with a few different inputs, printing 'OK' when
 # each function returns the correct result.
-# The starter code for each function includes a bare 'return' which is just a 
+# The starter code for each function includes a bare 'return' which is just a
 # placeholder for your code.
 
 
@@ -26,8 +26,13 @@ Kenzie List1 Assignment
 
 
 def match_ends(words):
-    # your code here
-    return
+    new_list = 0
+    for i in words:
+        if len(i) >= 2 and i[0] == i[-1]:
+            new_list += 1
+        else:
+            continue
+    return new_list
 
 
 # B. front_x
@@ -38,8 +43,18 @@ def match_ends(words):
 # Hint: this can be done by making 2 lists and sorting each of them
 # before combining them.
 def front_x(words):
-    # your code here
-    return
+    x_list = []
+    non_x_list = []
+    for i in words:
+        if i[0] == "x":
+            x_list.append(i)
+            continue
+        else:
+            non_x_list.append(i)
+            continue
+    x_list.sort()
+    non_x_list.sort()
+    return x_list + non_x_list
 
 
 # C. sort_last
@@ -49,8 +64,9 @@ def front_x(words):
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-    # your code here
-    return
+    # resource: https://www.geeksforgeeks.org/python-program-to-sort-a-list-of-tuples-by-second-item/
+    tuples.sort(key=lambda x: x[-1])
+    return tuples
 
 
 # Simple provided test() function used in main() to print
@@ -60,7 +76,8 @@ def test(got, expected):
         prefix = ' OK '
     else:
         prefix = '  X '
-    print('{} got: {}     expected: {}'.format(prefix, repr(got), repr(expected)))
+    print('{} got: {}     expected: {}'.format(
+        prefix, repr(got), repr(expected)))
 
 
 # Calls the above functions with interesting inputs.
